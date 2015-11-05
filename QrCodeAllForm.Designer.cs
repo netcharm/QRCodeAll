@@ -36,36 +36,44 @@
             // 
             // picUser
             // 
+            this.picUser.Enabled = false;
             this.picUser.Location = new System.Drawing.Point(8, 8);
             this.picUser.Name = "picUser";
             this.picUser.Size = new System.Drawing.Size(256, 256);
+            this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUser.TabIndex = 0;
             this.picUser.TabStop = false;
             // 
             // picPass
             // 
             this.picPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picPass.Enabled = false;
             this.picPass.Location = new System.Drawing.Point(328, 8);
             this.picPass.Name = "picPass";
             this.picPass.Size = new System.Drawing.Size(256, 256);
+            this.picPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPass.TabIndex = 1;
             this.picPass.TabStop = false;
             // 
             // picNote
             // 
             this.picNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNote.Enabled = false;
             this.picNote.Location = new System.Drawing.Point(328, 310);
             this.picNote.Name = "picNote";
             this.picNote.Size = new System.Drawing.Size(256, 256);
+            this.picNote.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picNote.TabIndex = 3;
             this.picNote.TabStop = false;
             // 
             // picUrl
             // 
             this.picUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picUrl.Enabled = false;
             this.picUrl.Location = new System.Drawing.Point(8, 310);
             this.picUrl.Name = "picUrl";
             this.picUrl.Size = new System.Drawing.Size(256, 256);
+            this.picUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUrl.TabIndex = 2;
             this.picUrl.TabStop = false;
             // 

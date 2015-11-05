@@ -132,19 +132,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="key-icon-s.png" />
+    <None Include="QRCodeAny-Note.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\QRCodeAny-User.png" />
+    <None Include="QRCodeAny-Pass.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\QRCodeAny-Note.png" />
+    <None Include="QRCodeAny-Url.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\QRCodeAny-Pass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\QRCodeAny-Url.png" />
+    <None Include="QRCodeAny-User.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -57,7 +57,7 @@ namespace QrCodeAny {
             SeparatorContextMenu = new ToolStripSeparator();
             Host.MainWindow.ToolsMenu.DropDownItems.Add( SeparatorMenu );
             Host.MainWindow.EntryContextMenu.Items.Add( SeparatorContextMenu );
-
+            
             ShowQrCodePassMenuItem = new ToolStripMenuItem 
             {
                 Image = Resources.QrCode, 
@@ -66,20 +66,19 @@ namespace QrCodeAny {
             ShowQrCodeAllMenuItem = new ToolStripMenuItem
             {
                 Image = Resources.QrCode,
-                Text = "QR Any"
+                Text  = "QR All"
             };
 
             ShowQrCodePassContextMenuItem = new ToolStripMenuItem 
             {
                 Image = Resources.QrCode,
-                Text = "QR Password"
+                Text  = "QR Password"
             };
             ShowQrCodeAllContextMenuItem = new ToolStripMenuItem
             {
                 Image = Resources.QrCode,
-                Text = "QR Any"
+                Text  = "QR All"
             };
-
 
             ShowQrCodePassMenuItem.Click        += OnShowQrCodePass;
             ShowQrCodeAllMenuItem.Click         += OnShowQrCodeAll;
@@ -296,14 +295,21 @@ namespace QrCodeAny {
 
         private Bitmap GetQrCode( string text, Image overlay )
         {
-            var width = 256;
-            var height = 256;
+            var width = 512;
+            var height = 512;
             var margin = 0;
+
+            int MAX_TEXT = 750;
 
             if (String.IsNullOrEmpty(text))
             {
                 Bitmap blankBitmap = new Bitmap(width, height);
                 return (blankBitmap);
+            }
+            var qrText = text;
+            if (qrText.Length > MAX_TEXT)
+            {
+                qrText = qrText.Substring(0, MAX_TEXT);
             }
 
             var bw = new ZXing.BarcodeWriter();
@@ -313,17 +319,20 @@ namespace QrCodeAny {
                 Width = width,
                 Height = height,
                 Margin = margin,
-                PureBarcode = false
+                PureBarcode = true
             };
 
-            encOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+            encOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+            encOptions.Hints.Add(EncodeHintType.DISABLE_ECI, true);
+            encOptions.Hints.Add(EncodeHintType.CHARACTER_SET, "UTF-8");
+            encOptions.Hints.Add(EncodeHintType.PDF417_COMPACT, true);
+            encOptions.Hints.Add(EncodeHintType.PDF417_COMPACTION, ZXing.PDF417.Internal.Compaction.AUTO);
 
             bw.Renderer = new BitmapRenderer();
             bw.Options = encOptions;
             bw.Format = ZXing.BarcodeFormat.QR_CODE;
-            Bitmap barcodeBitmap = bw.Write(text);
 
-            //Bitmap overlay = new Bitmap(width / 4, height / 4);
+            Bitmap barcodeBitmap = bw.Write(qrText);
 
             int deltaHeigth = barcodeBitmap.Height - overlay.Height;
             int deltaWidth = barcodeBitmap.Width - overlay.Width;
