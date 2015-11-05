@@ -152,7 +152,7 @@ namespace QrCodeAny {
                 password = encoding.GetString( bytes );
             }
 
-            Bitmap bitmap = GetQrCode( password );
+            Bitmap bitmap = GetQrCode(password, Resources.QRCode_Pass);
             if( null == bitmap ) 
             {
                 MessageBox.Show(
@@ -244,7 +244,7 @@ namespace QrCodeAny {
                 note = encodingNote.GetString(bytesNote);
             }
 
-            Bitmap bitmapPass = GetQrCode(password);
+            Bitmap bitmapPass = GetQrCode(password, Resources.QRCode_Pass);
             if (null == bitmapPass)
             {
                 MessageBox.Show(
@@ -253,7 +253,7 @@ namespace QrCodeAny {
                 return;
             }
 
-            Bitmap bitmapUser = GetQrCode(username);
+            Bitmap bitmapUser = GetQrCode(username, Resources.QRCode_User);
             if (null == bitmapUser)
             {
                 MessageBox.Show(
@@ -262,7 +262,7 @@ namespace QrCodeAny {
                 return;
             }
 
-            Bitmap bitmapUrl = GetQrCode(url);
+            Bitmap bitmapUrl = GetQrCode(url, Resources.QRCode_Url);
             if (null == bitmapUrl)
             {
                 MessageBox.Show(
@@ -271,7 +271,7 @@ namespace QrCodeAny {
                 return;
             }
 
-            Bitmap bitmapNote = GetQrCode(note);
+            Bitmap bitmapNote = GetQrCode(note, Resources.QRCode_Note);
             if (null == bitmapNote)
             {
                 MessageBox.Show(
@@ -294,7 +294,7 @@ namespace QrCodeAny {
             form.ShowDialog(Host.MainWindow);
         }
 
-        private Bitmap GetQrCode( string text )
+        private Bitmap GetQrCode( string text, Image overlay )
         {
             var width = 256;
             var height = 256;
@@ -322,13 +322,14 @@ namespace QrCodeAny {
             bw.Options = encOptions;
             bw.Format = ZXing.BarcodeFormat.QR_CODE;
             Bitmap barcodeBitmap = bw.Write(text);
-            //Bitmap overlay = new Bitmap(width + 2 * margin, height + 2 * margin);
 
-            //int deltaHeigth = bm.Height - overlay.Height;
-            //int deltaWidth = bm.Width - overlay.Width;
+            //Bitmap overlay = new Bitmap(width / 4, height / 4);
 
-            //Graphics g = Graphics.FromImage(bm);
-            //g.DrawImage(overlay, new Point(deltaWidth / 2, deltaHeigth / 2));
+            int deltaHeigth = barcodeBitmap.Height - overlay.Height;
+            int deltaWidth = barcodeBitmap.Width - overlay.Width;
+
+            Graphics g = Graphics.FromImage(barcodeBitmap);
+            g.DrawImage(overlay, new Point(deltaWidth / 2, deltaHeigth / 2));
 
             return( barcodeBitmap );
         }
