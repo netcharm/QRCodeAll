@@ -61,6 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
       <ExecutableExtension>.exe</ExecutableExtension>
       <HintPath>..\..\Build\QrCodeAnyPlugin\KeePass.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -126,9 +127,24 @@
     <None Include="icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.txt">
+    <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key-icon-s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\QRCodeAny-User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\QRCodeAny-Note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\QRCodeAny-Pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\QRCodeAny-Url.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
