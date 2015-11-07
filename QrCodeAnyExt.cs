@@ -159,15 +159,18 @@ namespace QrCodeAny {
                     MessageBoxIcon.Error );
                 return;
             }
-      
-            QrCodePassForm form = new QrCodePassForm 
+
+            using (QrCodePassForm form = new QrCodePassForm
             {
                 BackgroundImage = bitmap,
-                StartPosition   = FormStartPosition.CenterParent,
-                Text            = String.Format( "{0} - {1}", Application.ProductName, title )
-            };
-      
-            form.ShowDialog( Host.MainWindow );
+                StartPosition = FormStartPosition.CenterParent,
+                Text = String.Format("{0} - {1}", Application.ProductName, title)
+            })
+            {
+
+                form.ShowDialog(Host.MainWindow);
+                form.Close();
+            }
         }
 
         /// <summary>
@@ -278,19 +281,21 @@ namespace QrCodeAny {
                     MessageBoxIcon.Error);
                 return;
             }
-
-            QrCodeAllForm form = new QrCodeAllForm
+            using( QrCodeAllForm form = new QrCodeAllForm
+                {
+                    //BackgroundImage = bitmapPass,
+                    StartPosition = FormStartPosition.CenterParent,
+                    Text = String.Format("{0} - {1}", Application.ProductName, title)
+                })
             {
-                //BackgroundImage = bitmapPass,
-                StartPosition = FormStartPosition.CenterParent,
-                Text = String.Format("{0} - {1}", Application.ProductName, title)
-            };
-            form.picUser.Image = bitmapUser;
-            form.picPass.Image = bitmapPass;
-            form.picUrl.Image = bitmapUrl;
-            form.picNote.Image = bitmapNote;
+                form.picUser.Image = bitmapUser;
+                form.picPass.Image = bitmapPass;
+                form.picUrl.Image = bitmapUrl;
+                form.picNote.Image = bitmapNote;
 
-            form.ShowDialog(Host.MainWindow);
+                form.ShowDialog(Host.MainWindow);
+                form.Close();
+            }
         }
 
         private Bitmap GetQrCode( string text, Image overlay )
