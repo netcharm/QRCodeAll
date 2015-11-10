@@ -6,13 +6,12 @@ using System.Windows.Forms;
 
 using KeePass.Plugins;
 using KeePass.Util.Spr;
-
 using KeePassLib;
 using KeePassLib.Security;
 
 using ZXing;
-using ZXing.Rendering;
 using ZXing.QrCode.Internal;
+using ZXing.Rendering;
 
 namespace QrCodeAny {
     /// <summary>
@@ -327,7 +326,7 @@ namespace QrCodeAny {
                 PureBarcode = true
             };
 
-            encOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+            encOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.Q);
             encOptions.Hints.Add(EncodeHintType.DISABLE_ECI, true);
             encOptions.Hints.Add(EncodeHintType.CHARACTER_SET, "UTF-8");
             encOptions.Hints.Add(EncodeHintType.PDF417_COMPACT, true);
@@ -335,17 +334,26 @@ namespace QrCodeAny {
 
             bw.Renderer = new BitmapRenderer();
             bw.Options = encOptions;
-            bw.Format = ZXing.BarcodeFormat.QR_CODE;
+            bw.Format = BarcodeFormat.QR_CODE;
 
-            Bitmap barcodeBitmap = bw.Write(qrText);
+            try
+            {
+                Bitmap barcodeBitmap = bw.Write(qrText);
 
-            int deltaHeigth = barcodeBitmap.Height - overlay.Height;
-            int deltaWidth = barcodeBitmap.Width - overlay.Width;
+                int deltaHeigth = barcodeBitmap.Height - overlay.Height;
+                int deltaWidth = barcodeBitmap.Width - overlay.Width;
 
-            Graphics g = Graphics.FromImage(barcodeBitmap);
-            g.DrawImage(overlay, new Point(deltaWidth / 2, deltaHeigth / 2));
+                using (Graphics g = Graphics.FromImage(barcodeBitmap))
+                {
+                    g.DrawImage(overlay, new Point(deltaWidth / 2, deltaHeigth / 2));
+                }
 
-            return( barcodeBitmap );
+                return (barcodeBitmap);
+            }
+            catch (WriterException)
+            {
+                return (new Bitmap(width, height));
+            }
         }
     }
 }
