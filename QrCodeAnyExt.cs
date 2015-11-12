@@ -160,11 +160,13 @@ namespace QrCodeAny {
                 password = encoding.GetString( bytes );
             }
 
-            Bitmap bitmap = GetQrCode(password, Resources.QRCode_Pass);
+            Bitmap bitmap = GetQrCode( password, Resources.QRCode_Pass );
             if( null == bitmap ) 
             {
                 MessageBox.Show(
-                    Host.MainWindow, "The given password does not fit into a QR code.", "QR Code Error", MessageBoxButtons.OK,
+                    Host.MainWindow, 
+                    "The given password does not fit into a QR code.", "QR Code Error", 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error );
                 return;
             }
@@ -177,7 +179,7 @@ namespace QrCodeAny {
             })
             {
 
-                form.ShowDialog(Host.MainWindow);
+                form.ShowDialog( Host.MainWindow );
                 form.Close();
             }
         }
