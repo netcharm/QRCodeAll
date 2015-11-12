@@ -57,11 +57,13 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KeePass, Version=2.30.0.23864, Culture=neutral, PublicKeyToken=7952fc8ece49a093, processorArchitecture=MSIL">
+    <Reference Include="KeePass, Version=2.30.0.27038, Culture=neutral, PublicKeyToken=7952fc8ece49a093, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <ExecutableExtension>.exe</ExecutableExtension>
-      <HintPath>..\..\Build\QrCodeAnyPlugin\KeePass.exe</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\Build\KeePass.exe</HintPath>
+    </Reference>
+    <Reference Include="NGettext, Version=0.2.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\NGettext.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,6 +129,7 @@
     <None Include="icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="QrCodeAny.po" />
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -146,7 +149,13 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(ProjectDir)..\..\Build\QrCodeAnyPlugin\"
-copy "$(ProjectDir)zxing.dll" "$(ProjectDir)..\..\Build\QrCodeAnyPlugin\"</PostBuildEvent>
+copy "$(ProjectDir)zxing.dll" "$(ProjectDir)..\..\Build\QrCodeAnyPlugin\"
+copy "$(ProjectDir)NGetText.dll" "$(ProjectDir)..\..\Build\QrCodeAnyPlugin\"
+xcopy /S /I /D /Y "$(ProjectDir)locale" "$(ProjectDir)..\..\Build\QrCodeAnyPlugin\locale"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

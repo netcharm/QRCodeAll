@@ -1,0 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: QrCodeAny\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-12 16:23+0800\n"
+"PO-Revision-Date: 2015-11-12 16:47+0800\n"
+"Last-Translator: netcharm <netcharm@163.com>\n"
+"Language-Team: netcharm <netcharm@163.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: China\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: ..\\..\\..\\..\\\n"
+
+#: QrCodeAnyExt.cs:73
+#: QrCodeAnyExt.cs:84
+msgid "QR Password"
+msgstr "QR 密碼字段"
+
+#: QrCodeAnyExt.cs:78
+#: QrCodeAnyExt.cs:89
+msgid "QR All"
+msgstr "QR 全部字段"
+

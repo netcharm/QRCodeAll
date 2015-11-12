@@ -12,6 +12,10 @@ using KeePassLib.Security;
 using ZXing;
 using ZXing.QrCode.Internal;
 using ZXing.Rendering;
+using System.Threading;
+
+using NGettext;
+using System.Globalization;
 
 namespace QrCodeAny {
     /// <summary>
@@ -21,6 +25,10 @@ namespace QrCodeAny {
     /// </summary>
     public sealed class QrCodeAnyExt : Plugin 
     {
+        private static string resourceBaseName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        private static string resourceCultureName = Thread.CurrentThread.CurrentUICulture.Name;
+        private static string resourcePath = AppDomain.CurrentDomain.BaseDirectory + "locale";
+
         /// <summary>
         /// A references to KeePass itself.
         /// </summary>
@@ -56,27 +64,29 @@ namespace QrCodeAny {
             SeparatorContextMenu = new ToolStripSeparator();
             Host.MainWindow.ToolsMenu.DropDownItems.Add( SeparatorMenu );
             Host.MainWindow.EntryContextMenu.Items.Add( SeparatorContextMenu );
-            
+
+            ICatalog catalog = new Catalog(resourceBaseName, resourcePath, CultureInfo.CurrentCulture);
+
             ShowQrCodePassMenuItem = new ToolStripMenuItem 
             {
                 Image = Resources.QrCode, 
-                Text  = "QR Password"
+                Text  = catalog.GetString("QR Password")
             };
             ShowQrCodeAllMenuItem = new ToolStripMenuItem
             {
                 Image = Resources.QrCode,
-                Text  = "QR All"
+                Text = catalog.GetString("QR All")
             };
 
             ShowQrCodePassContextMenuItem = new ToolStripMenuItem 
             {
                 Image = Resources.QrCode,
-                Text  = "QR Password"
+                Text = catalog.GetString("QR Password")
             };
             ShowQrCodeAllContextMenuItem = new ToolStripMenuItem
             {
                 Image = Resources.QrCode,
-                Text  = "QR All"
+                Text = catalog.GetString("QR All")
             };
 
             ShowQrCodePassMenuItem.Click        += OnShowQrCodePass;
