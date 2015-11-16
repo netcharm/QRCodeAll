@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: QrCodeAny\n"
 "Report-Msgid-Bugs-To: netcharm <netcharm@163.com>\n"
 "POT-Creation-Date: 2015-11-17 00:17+0800\n"
-"PO-Revision-Date: 2015-11-17 00:20+0800\n"
+"PO-Revision-Date: 2015-11-17 00:17+0800\n"
 "Last-Translator: netcharm <netcharm@163.com>\n"
 "Language-Team: netcharm <netcharm@163.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,44 +18,37 @@ msgstr ""
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-Country: China\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Basepath: ..\\..\\..\\..\\\n"
+"X-Poedit-Basepath: .\n"
 
 #: QrCodePassForm.Designer.cs:42
 msgid "QrCodeForm"
-msgstr "QRCode窗口"
+msgstr ""
 
-#: QrCodeAnyExt.cs:73
-#: QrCodeAnyExt.cs:84
+#: QrCodeAnyExt.cs:73 QrCodeAnyExt.cs:84
 msgid "QR Password"
-msgstr "QR 密碼字段"
+msgstr ""
 
-#: QrCodeAnyExt.cs:78
-#: QrCodeAnyExt.cs:89
+#: QrCodeAnyExt.cs:78 QrCodeAnyExt.cs:89
 msgid "QR All"
-msgstr "QR 全部字段"
+msgstr ""
 
-#: QrCodeAnyExt.cs:168
-#: QrCodeAnyExt.cs:266
+#: QrCodeAnyExt.cs:168 QrCodeAnyExt.cs:266
 msgid "The given password does not fit into a QR code."
-msgstr "給出的密碼文本無法編碼為QRCode"
+msgstr ""
 
-#: QrCodeAnyExt.cs:169
-#: QrCodeAnyExt.cs:267
-#: QrCodeAnyExt.cs:279
-#: QrCodeAnyExt.cs:291
-#: QrCodeAnyExt.cs:302
+#: QrCodeAnyExt.cs:169 QrCodeAnyExt.cs:267 QrCodeAnyExt.cs:279
+#: QrCodeAnyExt.cs:291 QrCodeAnyExt.cs:302
 msgid "QR Code Error"
-msgstr "QRCode出錯了"
+msgstr ""
 
 #: QrCodeAnyExt.cs:278
 msgid "The given username does not fit into a QR code."
-msgstr "給出的用戶名文本無法編碼為QRCode"
+msgstr ""
 
 #: QrCodeAnyExt.cs:290
 msgid "The given url does not fit into a QR code."
-msgstr "給出的網址文本無法編碼為QRCode"
+msgstr ""
 
 #: QrCodeAnyExt.cs:301
 msgid "The given note does not fit into a QR code."
-msgstr "給出的備註文本無法編碼為QRCode"
-
+msgstr ""

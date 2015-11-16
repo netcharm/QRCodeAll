@@ -29,6 +29,8 @@ namespace QrCodeAny {
         private static string resourceCultureName = Thread.CurrentThread.CurrentUICulture.Name;
         private static string resourcePath = AppDomain.CurrentDomain.BaseDirectory + "locale";
 
+        private ICatalog catalog = new Catalog(resourceBaseName, resourcePath, CultureInfo.CurrentCulture);
+
         /// <summary>
         /// A references to KeePass itself.
         /// </summary>
@@ -64,8 +66,6 @@ namespace QrCodeAny {
             SeparatorContextMenu = new ToolStripSeparator();
             Host.MainWindow.ToolsMenu.DropDownItems.Add( SeparatorMenu );
             Host.MainWindow.EntryContextMenu.Items.Add( SeparatorContextMenu );
-
-            ICatalog catalog = new Catalog(resourceBaseName, resourcePath, CultureInfo.CurrentCulture);
 
             ShowQrCodePassMenuItem = new ToolStripMenuItem 
             {
@@ -164,8 +164,9 @@ namespace QrCodeAny {
             if( null == bitmap ) 
             {
                 MessageBox.Show(
-                    Host.MainWindow, 
-                    "The given password does not fit into a QR code.", "QR Code Error", 
+                    Host.MainWindow,
+                    catalog.GetString( "The given password does not fit into a QR code." ), 
+                    catalog.GetString( "QR Code Error" ), 
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error );
                 return;
@@ -261,7 +262,10 @@ namespace QrCodeAny {
             if (null == bitmapPass)
             {
                 MessageBox.Show(
-                    Host.MainWindow, "The given password does not fit into a QR code.", "QR Code Error", MessageBoxButtons.OK,
+                    Host.MainWindow,
+                    catalog.GetString( "The given password does not fit into a QR code." ), 
+                    catalog.GetString( "QR Code Error" ), 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -270,7 +274,10 @@ namespace QrCodeAny {
             if (null == bitmapUser)
             {
                 MessageBox.Show(
-                    Host.MainWindow, "The given username does not fit into a QR code.", "QR Code Error", MessageBoxButtons.OK,
+                    Host.MainWindow,
+                    catalog.GetString( "The given username does not fit into a QR code." ),
+                    catalog.GetString( "QR Code Error" ), 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -279,7 +286,9 @@ namespace QrCodeAny {
             if (null == bitmapUrl)
             {
                 MessageBox.Show(
-                    Host.MainWindow, "The given url does not fit into a QR code.", "QR Code Error", MessageBoxButtons.OK,
+                    Host.MainWindow,
+                    catalog.GetString( "The given url does not fit into a QR code." ),
+                    catalog.GetString( "QR Code Error" ), MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -288,7 +297,9 @@ namespace QrCodeAny {
             if (null == bitmapNote)
             {
                 MessageBox.Show(
-                    Host.MainWindow, "The given note does not fit into a QR code.", "QR Code Error", MessageBoxButtons.OK,
+                    Host.MainWindow,
+                    catalog.GetString( "The given note does not fit into a QR code." ),
+                    catalog.GetString( "QR Code Error" ), MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
