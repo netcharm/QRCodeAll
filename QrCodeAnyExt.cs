@@ -16,6 +16,7 @@ using System.Threading;
 
 using NGettext;
 using System.Globalization;
+using ZXing.Common;
 
 namespace QrCodeAny {
     /// <summary>
@@ -182,6 +183,7 @@ namespace QrCodeAny {
 
                 form.ShowDialog( Host.MainWindow );
                 form.Close();
+                form.Dispose();
             }
         }
 
@@ -317,6 +319,7 @@ namespace QrCodeAny {
 
                 form.ShowDialog(Host.MainWindow);
                 form.Close();
+                form.Dispose();
             }
         }
 
@@ -361,6 +364,13 @@ namespace QrCodeAny {
 
             try
             {
+                BitMatrix bm = bw.Encode( text );
+                int[] rectangle = bm.getEnclosingRectangle();
+                var bmW = rectangle[2];
+                var bmH = rectangle[3];
+                //bw.Options.Width = (int) ( bmW * 1.1 );
+                //bw.Options.Height = (int) ( bmH * 1.1 );
+
                 Bitmap barcodeBitmap = bw.Write(qrText);
 
                 int deltaHeigth = barcodeBitmap.Height - overlay.Height;
@@ -368,6 +378,7 @@ namespace QrCodeAny {
 
                 using (Graphics g = Graphics.FromImage(barcodeBitmap))
                 {
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.DrawImage(overlay, new Point(deltaWidth / 2, deltaHeigth / 2));
                 }
 
