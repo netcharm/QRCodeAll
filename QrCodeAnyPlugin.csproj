@@ -133,7 +133,7 @@
     <None Include="locale\zh_CN\LC_MESSAGES\QrCodeAny.po" />
     <None Include="locale\zh_TW\LC_MESSAGES\QrCodeAny.mo" />
     <None Include="locale\zh_TW\LC_MESSAGES\QrCodeAny.po" />
-    <None Include="QrCodeAny.po" />
+    <None Include="QrCodeAny.pot" />
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
