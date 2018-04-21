@@ -263,6 +263,7 @@ namespace QrCodeAny {
             Bitmap bitmapPass = GetQrCode(password, Resources.QRCode_Pass);
             if (null == bitmapPass)
             {
+                //Error( catalog.GetString("QR Code Error"), catalog.GetString("The given password does not fit into a QR code.") );
                 MessageBox.Show(
                     Host.MainWindow,
                     catalog.GetString( "The given password does not fit into a QR code." ), 
@@ -275,6 +276,7 @@ namespace QrCodeAny {
             Bitmap bitmapUser = GetQrCode(username, Resources.QRCode_User);
             if (null == bitmapUser)
             {
+                //Error( catalog.GetString("QR Code Error"), catalog.GetString("The given username does not fit into a QR code.") );
                 MessageBox.Show(
                     Host.MainWindow,
                     catalog.GetString( "The given username does not fit into a QR code." ),
@@ -287,10 +289,12 @@ namespace QrCodeAny {
             Bitmap bitmapUrl = GetQrCode(url, Resources.QRCode_Url);
             if (null == bitmapUrl)
             {
+                //Error( catalog.GetString("QR Code Error"), catalog.GetString("The given url does not fit into a QR code.") );
                 MessageBox.Show(
                     Host.MainWindow,
                     catalog.GetString( "The given url does not fit into a QR code." ),
-                    catalog.GetString( "QR Code Error" ), MessageBoxButtons.OK,
+                    catalog.GetString( "QR Code Error" ), 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -298,10 +302,13 @@ namespace QrCodeAny {
             Bitmap bitmapNote = GetQrCode(note, Resources.QRCode_Note);
             if (null == bitmapNote)
             {
+                //Error( "QR Code Error", "The given note does not fit into a QR code." );
+                //Error( catalog.GetString("QR Code Error"), catalog.GetString("The given note does not fit into a QR code.") );
                 MessageBox.Show(
                     Host.MainWindow,
                     catalog.GetString( "The given note does not fit into a QR code." ),
-                    catalog.GetString( "QR Code Error" ), MessageBoxButtons.OK,
+                    catalog.GetString( "QR Code Error" ), 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -323,11 +330,21 @@ namespace QrCodeAny {
             }
         }
 
+        private DialogResult Error(string caption, string content)
+        {
+            return MessageBox.Show(
+                    Host.MainWindow,
+                    catalog.GetString( content ),
+                    catalog.GetString( caption ), 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);        
+        }
+        
         private Bitmap GetQrCode( string text, Image overlay )
         {
             var width = 512;
             var height = 512;
-            var margin = 0;
+            var margin = 1;
 
             int MAX_TEXT = 750;
 
