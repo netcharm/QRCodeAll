@@ -12,11 +12,13 @@ using KeePassLib.Security;
 using ZXing;
 using ZXing.QrCode.Internal;
 using ZXing.Rendering;
+using ZXing.Common;
+
 using System.Threading;
+using System.Globalization;
+using System.IO;
 
 using NGettext;
-using System.Globalization;
-using ZXing.Common;
 
 namespace QrCodeAny {
     /// <summary>
@@ -28,7 +30,8 @@ namespace QrCodeAny {
     {
         private static string resourceBaseName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
         private static string resourceCultureName = Thread.CurrentThread.CurrentUICulture.Name;
-        private static string resourcePath = AppDomain.CurrentDomain.BaseDirectory + "locale";
+        //private static string resourcePath = AppDomain.CurrentDomain.BaseDirectory + "locale";
+        private static string resourcePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "locale");
 
         private ICatalog catalog = new Catalog(resourceBaseName, resourcePath, CultureInfo.CurrentCulture);
 
@@ -63,6 +66,13 @@ namespace QrCodeAny {
             if( host == null ) return false;
             Host = host;
 
+            //MessageBox.Show(System.Reflection.Assembly.GetEntryAssembly().Location, "Entry");
+            //MessageBox.Show(System.Reflection.Assembly.GetCallingAssembly().Location, "Calling");
+            //MessageBox.Show(System.Reflection.Assembly.GetExecutingAssembly().Location, "Executing");
+#if DEBUG
+            MessageBox.Show(resourceBaseName, "ResourceBaseName");
+            MessageBox.Show(resourcePath, "ResourcePath");
+#endif
             SeparatorMenu = new ToolStripSeparator();
             SeparatorContextMenu = new ToolStripSeparator();
             Host.MainWindow.ToolsMenu.DropDownItems.Add( SeparatorMenu );
